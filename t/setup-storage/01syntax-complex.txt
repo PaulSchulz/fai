@@ -15,7 +15,7 @@ raid1   -      sda2,sdb2 -    -
 
 # Assumes that previous step created /dev/md0,/dev/md1
 disk_config cryptsetup
-luks    /dev/mapper/md1_crypt /dev/md1 lvm - -
+luks:"secret"   /dev/mapper/md1_crypt /dev/md1 - -
 
 # Assumes the previous step created /dev/mapper/md1_crypt
 disk_config lvm

@@ -1,6 +1,6 @@
 # Partition a disk and add ancryption
-disk_config disk1
+disk_config sda
 primary - 2G-  -  -
 
 disk_config cryptsetup
-luks    /dev/mapper/md1_crypt /dev/md1 lvm - -
+luks:"secret" /dev/mapper/md1_crypt sda1 - -
