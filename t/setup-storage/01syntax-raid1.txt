@@ -1,0 +1,13 @@
+disk_config sda disklabel:msdos bootable:1 fstabkey:uuid
+primary -      2G        -     -
+primary -      200G-     -     -
+primary swap   8G        swap  sw
+
+disk_config sdb disklabel:msdos bootable:1 fstabkey:uuid
+primary -      2G        -     -
+primary -      200G-     -     -
+primary swap   8G        swap  sw
+
+disk_config raid
+raid1   /boot  sda1,sdb1 ext2 rw,noatime
+raid1   /      sda2,sdb2 ext4 rw,noatime

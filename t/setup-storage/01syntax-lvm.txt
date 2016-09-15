@@ -1,0 +1,21 @@
+# Disks: 2x 1TB
+# Configuration: RAID1+CRYPTO+LVM
+
+disk_config sda disklabel:msdos bootable:1 fstabkey:uuid
+primary -      2G        -     -
+logical -      200G-     -     -
+
+disk_config sdb disklabel:msdos bootable:1 fstabkey:uuid
+primary -      2G        -     -
+logical -      200G-     -     -
+
+disk_config raid
+raid1   /boot  sda1,sdb1 ext2 rw,noatime
+raid1   -      sda2,sdb2 -    -
+
+# Assumes the previous step created /dev/md1
+disk_config lvm
+vg Base md1
+Base-Swap   swap   8G    swap sw
+Base-Root   /      40G   ext4 rw,noatime
+Base-Home   /home  100G- ext4 rw,noatime

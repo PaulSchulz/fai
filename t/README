@@ -1,0 +1,10 @@
+To run the tests, set the following environment variable
+
+  export PERL5LIB=/home/paul/git/ps-fai/lib/setup-storage
+
+then run 'prove' fromn the top directory.
+
+
+
+
+  

@@ -34,7 +34,7 @@ use strict;
 use Parse::RecDescent;
 use Cwd qw(abs_path);
 use Storable qw(dclone);
-
+use Data::Dumper;          # For Debugging
 package FAI;
 
 ################################################################################
@@ -1156,6 +1156,19 @@ sub run_parser {
 
   # attempt to parse $input - any error will lead to termination
   defined $FAI::Parser->file($input) or die "Syntax error\n";
+
+  #&FAI::print_config();
+}
+
+################################################################################
+#
+# @brief Output config
+#
+################################################################################
+sub print_config {
+
+    print Dumper(%FAI::configs);
+
 }
 
 ################################################################################
