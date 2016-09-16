@@ -359,6 +359,9 @@ sub execute_command_internal {
     print "Executing: $command\n" if $prt;
     `$command 1> $stdout_filename 2> $stderr_filename`;
     $exit_code = ($?>>8);
+  } elsif($FAI::script_output) {
+    print "$command\n";
+    return "";
   } else {
     print "would run command $command; to have it executed, use -X \n";
     return "";

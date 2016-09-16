@@ -59,8 +59,8 @@ $|=1;
 use Getopt::Std;
 $main::VERSION = $version;
 $Getopt::Std::STANDARD_HELP_VERSION = 1;
-our ($opt_X, $opt_f, $opt_h, $opt_d, $opt_s, $opt_D, $opt_L); # the variables for getopt
-(&getopts('Xf:hdsD:L:') && !$opt_h) || die <<EOF;
+our ($opt_X, $opt_f, $opt_h, $opt_d, $opt_s, $opt_D, $opt_L,$opt_C); # the variables for getopt
+(&getopts('Xf:hdsD:L:C') && !$opt_h) || die <<EOF;
 setup-storage version $version
 
 USAGE: [-X]                     no test, your harddisks will be formated
@@ -71,6 +71,7 @@ USAGE: [-X]                     no test, your harddisks will be formated
        [-D<disks>]              override disklist variable by space-separated <disks>
        [-L<logdir>]             use <logdir> instead of LOGDIR variable
        [-h]                     print this help message
+       [-C]                     script command output
 EOF
 
 # include all subparts, which are part of the FAI perl package
@@ -89,6 +90,10 @@ $opt_d and $FAI::debug = 1;
 # Really write any changes to disk
 $opt_X and $FAI::no_dry_run = 1;
 warn "setup-storage is running in test-only mode\n" unless ($FAI::no_dry_run);
+
+# Write script commands
+$opt_C and $FAI::script_output = 1;
+warn "setup-storage is writing script commands\n" unless ($FAI::script_output);
 
 # syntactic checks only
 $opt_s and $FAI::check_only = 1;
